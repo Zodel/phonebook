@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Телефонный справочник — АО «ГОКБ «ПРОЖЕКТОР»</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">☎</span>
+      <div>
+        <div class="logo-title">Телефонный справочник</div>
+        <div class="logo-sub">АО «ГОКБ «ПРОЖЕКТОР»</div>
+      </div>
+    </div>
+    <form class="search-form" method="get" action="/">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input type="text" name="search" value="{{ search }}" placeholder="Поиск по имени, должности, номеру…">
+      </div>
+      <button type="submit" class="btn-search">Найти</button>
+      {% if search %}<a href="/" class="clear-btn">✕ Сбросить</a>{% endif %}
+    </form>
+    <a href="/admin/login" class="btn-admin">Панель администратора</a>
+  </div>
+</header>
+
+<main class="main">
+  {% if search and not dept_groups %}
+    <div class="no-results">🔍 По запросу «{{ search }}» ничего не найдено</div>
+  {% endif %}
+  {% for group in dept_groups %}
+  <div class="dept-block">
+    <div class="dept-heading">{{ group.name }}</div>
+    <table class="pb-table">
+      <thead>
+        <tr>
+          <th>Должность</th><th>ФИО</th><th>Внутренний / Внешний телефоны</th><th>Кабинет</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in group.contacts %}
+        <tr>
+          <td>{{ c.position }}</td>
+          <td>{{ c.full_name }}</td>
+          <td>
+            {% if c.internal %}<span class="ph-int">{{ c.internal }}</span>{% endif %}
+            {% if c.internal and c.external %}<span class="ph-sep">/</span>{% endif %}
+            {% if c.external %}<span class="ph-ext">{{ c.external }}</span>{% endif %}
+            {% if not c.internal and not c.external %}—{% endif %}
+          </td>
+          <td>{{ c.office or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endfor %}
+</main>
+<footer>АО «ГОKБ «ПРОЖEКТОР» &mdash; Телефонный справочник</footer>
+</body>
+</html>

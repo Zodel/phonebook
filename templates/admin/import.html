@@ -1,0 +1,26 @@
+{% extends "admin_base.html" %}
+{% block title %}Импорт / Экспорт{% endblock %}
+{% block t_import %}active{% endblock %}
+{% block content %}
+<div class="toolbar"><h2>Импорт / Экспорт данных</h2></div>
+<div class="io-grid">
+  <div class="io-card">
+    <div class="io-icon">⬇</div>
+    <h3>Экспорт в CSV</h3>
+    <p>Будет доступен после подключения базы данных.</p>
+    <a href="/admin/export" class="btn-primary" style="width:fit-content">Скачать CSV</a>
+  </div>
+  <div class="io-card">
+    <div class="io-icon">⬆</div>
+    <h3>Импорт из CSV</h3>
+    <p>Будет доступен после подключения базы данных.<br>
+       Заголовки: <code>department, position, full_name, internal_phone, external_phone, office</code></p>
+    {% if error %}<div class="error-msg">{{ error }}</div>{% endif %}
+    {% if msg %}<div class="success-msg">{{ msg }}</div>{% endif %}
+    <form method="post" action="/admin/import" enctype="multipart/form-data">
+      <div class="form-group"><label>CSV-файл</label><input type="file" name="csvfile" accept=".csv" style="width:auto"></div>
+      <button type="submit" class="btn-primary">Импортировать</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

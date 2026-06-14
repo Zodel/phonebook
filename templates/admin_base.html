@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Администрирование{% endblock %} — Телефонный справочник</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+<header class="admin-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">☎</span>
+      <div>
+        <div class="logo-title">Панель администратора</div>
+        <div class="logo-sub">АО «ГОКБ «ПРОЖЕКТОР»</div>
+      </div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin"              class="nav-tab {% block t_contacts %}{% endblock %}">Контакты</a>
+      <a href="/admin/departments"  class="nav-tab {% block t_depts %}{% endblock %}">Отделы</a>
+      <a href="/admin/import"       class="nav-tab {% block t_import %}{% endblock %}">Импорт / Экспорт</a>
+      <a href="/admin/password"     class="nav-tab {% block t_pwd %}{% endblock %}">Пароль</a>
+    </nav>
+    <div class="user-bar">
+      <span>admin</span>
+      <a href="/admin/logout" class="btn-logout">Выйти</a>
+      <a href="/" class="btn-view">Просмотр справочника</a>
+    </div>
+  </div>
+</header>
+<main class="admin-main">
+  {% block content %}{% endblock %}
+</main>
+</body>
+</html>

@@ -1,0 +1,132 @@
+.search-form {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-wrap {
+  position: relative;
+}
+
+.search-wrap input {
+  height: 38px;
+  padding: 0 12px 0 38px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--r);
+  color: #fff;
+  font-family: var(--body);
+  font-size: 14px;
+  width: 300px;
+}
+.search-wrap input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-wrap input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+.clear-btn {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+}
+
+.clear-btn:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-search {
+  height: 38px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: var(--r);
+  font-family: var(--body);
+  font-size: 14px;
+}
+
+.btn-search:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-admin {
+  height: 38px;
+  padding: 0 18px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--r);
+  font-family: var(--head);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.btn-admin:hover {
+  background: var(--accent-d);
+  text-decoration: none;
+}
+
+.main {
+  max-width: 1300px;
+  margin: 28px auto 48px;
+  padding: 0 24px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.dept-block {
+  margin-bottom: 32px;
+}
+
+.dept-heading {
+  background: var(--dept-bg);
+  color: var(--primary);
+  font-family: var(--head);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+}
+
+.pb-table {
+  border-top: none;
+}
+
+.ph-int {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.ph-sep {
+  color: var(--muted);
+  margin: 0 5px;
+}
+
+.ph-ext {
+  color: var(--muted);
+}
