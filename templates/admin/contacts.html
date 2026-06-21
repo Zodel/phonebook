@@ -20,11 +20,11 @@
     {% endif %}
     {% for c in contacts %}
     <tr>
-      <td>{{ c.dept }}</td>
+      <td>{{ c.dept_name }}</td>
       <td>{{ c.position }}</td>
       <td>{{ c.full_name }}</td>
-      <td>{{ c.internal or '—' }}</td>
-      <td>{{ c.external or '—' }}</td>
+      <td>{{ c.internal_phone or '—' }}</td>
+      <td>{{ c.external_phone or '—' }}</td>
       <td>{{ c.office or '—' }}</td>
       <td><div class="action-btns">
         <a href="/admin/contacts/{{ c.id }}/edit" class="btn-edit">Изм.</a>

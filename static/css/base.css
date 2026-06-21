@@ -34,12 +34,7 @@ body {
 }
 
 a {
-  color: var(--primary);
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 button {
@@ -72,6 +67,11 @@ button {
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
+  color: var(--surface);
+}
+
+.logo:hover {
+  color: var(--row-hover);
 }
 
 .logo-icon {

@@ -11,13 +11,13 @@
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <div class="logo">
+    <a href="/" class="logo">
       <span class="logo-icon">☎</span>
       <div>
         <div class="logo-title">Телефонный справочник</div>
         <div class="logo-sub">АО «ГОКБ «ПРОЖЕКТОР»</div>
       </div>
-    </div>
+    </a>
     <form class="search-form" method="get" action="/">
       <div class="search-wrap">
         <span class="search-icon">⌕</span>
@@ -26,7 +26,6 @@
       <button type="submit" class="btn-search">Найти</button>
       {% if search %}<a href="/" class="clear-btn">✕ Сбросить</a>{% endif %}
     </form>
-    <a href="/admin/login" class="btn-admin">Панель администратора</a>
   </div>
 </header>
 
@@ -49,10 +48,10 @@
           <td>{{ c.position }}</td>
           <td>{{ c.full_name }}</td>
           <td>
-            {% if c.internal %}<span class="ph-int">{{ c.internal }}</span>{% endif %}
-            {% if c.internal and c.external %}<span class="ph-sep">/</span>{% endif %}
-            {% if c.external %}<span class="ph-ext">{{ c.external }}</span>{% endif %}
-            {% if not c.internal and not c.external %}—{% endif %}
+            {% if c.internal_phone %}<span class="ph-int">{{ c.internal_phone }}</span>{% endif %}
+            {% if c.internal_phone and c.external_phone %}<span class="ph-sep">/</span>{% endif %}
+            {% if c.external_phone %}<span class="ph-ext">{{ c.external_phone }}</span>{% endif %}
+            {% if not c.internal_phone and not c.external_phone %}—{% endif %}
           </td>
           <td>{{ c.office or '—' }}</td>
         </tr>

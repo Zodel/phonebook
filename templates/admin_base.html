@@ -11,13 +11,13 @@
 <body>
 <header class="admin-header">
   <div class="header-inner">
-    <div class="logo">
+    <a href="/" class="logo">
       <span class="logo-icon">☎</span>
       <div>
         <div class="logo-title">Панель администратора</div>
         <div class="logo-sub">АО «ГОКБ «ПРОЖЕКТОР»</div>
       </div>
-    </div>
+    </a>
     <nav class="admin-nav">
       <a href="/admin"              class="nav-tab {% block t_contacts %}{% endblock %}">Контакты</a>
       <a href="/admin/departments"  class="nav-tab {% block t_depts %}{% endblock %}">Отделы</a>
@@ -27,7 +27,6 @@
     <div class="user-bar">
       <span>admin</span>
       <a href="/admin/logout" class="btn-logout">Выйти</a>
-      <a href="/" class="btn-view">Просмотр справочника</a>
     </div>
   </div>
 </header>
