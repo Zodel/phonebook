@@ -7,14 +7,12 @@
   <div class="io-card">
     <div class="io-icon">⬇</div>
     <h3>Экспорт в CSV</h3>
-    <p>Будет доступен после подключения базы данных.</p>
     <a href="/admin/export" class="btn-primary" style="width:fit-content">Скачать CSV</a>
   </div>
   <div class="io-card">
     <div class="io-icon">⬆</div>
     <h3>Импорт из CSV</h3>
-    <p>Будет доступен после подключения базы данных.<br>
-       Заголовки: <code>department, position, full_name, internal_phone, external_phone, office</code></p>
+        Заголовки: <code>department, position, full_name, internal_phone, external_phone, office</code></p>
     {% if error %}<div class="error-msg">{{ error }}</div>{% endif %}
     {% if msg %}<div class="success-msg">{{ msg }}</div>{% endif %}
     <form method="post" action="/admin/import" enctype="multipart/form-data">
