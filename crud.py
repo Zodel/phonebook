@@ -1,6 +1,6 @@
 from database import get_db
 
-
+# Получает список всех контактов из базы (с поддержкой поиска и сортировки)
 def get_all_contacts(search=""):
     with get_db() as conn:
         if search:
@@ -28,7 +28,7 @@ def get_all_contacts(search=""):
             ).fetchall()
         return [dict(r) for r in rows]
 
-
+# Получает один контакт по его ID
 def get_contact(contact_id):
     with get_db() as conn:
         row = conn.execute(
@@ -36,7 +36,7 @@ def get_contact(contact_id):
         ).fetchone()
         return dict(row) if row else None
 
-
+# Создает новую запись контакта в базе данных
 def create_contact(data):
     with get_db() as conn:
         conn.execute(
@@ -49,7 +49,7 @@ def create_contact(data):
             ),
         )
 
-
+# Обновляет данные существующего контакта
 def update_contact(contact_id, data):
     with get_db() as conn:
         conn.execute(
@@ -64,12 +64,12 @@ def update_contact(contact_id, data):
             ),
         )
 
-
+# Удаляет контакт из базы по ID
 def delete_contact(contact_id):
     with get_db() as conn:
         conn.execute("DELETE FROM contacts WHERE id = ?", (contact_id,))
 
-
+# Возвращает список всех отделов, отсортированных по порядку
 def get_all_departments():
     with get_db() as conn:
         rows = conn.execute(
@@ -77,7 +77,7 @@ def get_all_departments():
         ).fetchall()
         return [dict(r) for r in rows]
 
-
+# Получает данные одного отдела по его ID
 def get_department(dept_id):
     with get_db() as conn:
         row = conn.execute(
@@ -85,7 +85,7 @@ def get_department(dept_id):
         ).fetchone()
         return dict(row) if row else None
 
-
+# Считает количество контактов в каждом отделе
 def get_department_counts():
     with get_db() as conn:
         rows = conn.execute(
@@ -93,7 +93,7 @@ def get_department_counts():
         ).fetchall()
         return {r["department_id"]: r["cnt"] for r in rows}
 
-
+# Добавляет новый отдел в базу
 def create_department(name, sort_order):
     with get_db() as conn:
         conn.execute(
@@ -101,7 +101,7 @@ def create_department(name, sort_order):
             (name, sort_order),
         )
 
-
+# Обновляет название и порядок сортировки отдела
 def update_department(dept_id, name, sort_order):
     with get_db() as conn:
         conn.execute(
@@ -109,12 +109,12 @@ def update_department(dept_id, name, sort_order):
             (name, sort_order, dept_id),
         )
 
-
+# Удаляет отдел из базы
 def delete_department(dept_id):
     with get_db() as conn:
         conn.execute("DELETE FROM departments WHERE id = ?", (dept_id,))
 
-
+# Получает данные администратора по имени пользователя
 def get_admin(username):
     with get_db() as conn:
         row = conn.execute(
@@ -122,7 +122,7 @@ def get_admin(username):
         ).fetchone()
         return dict(row) if row else None
 
-
+# Обновляет пароль администратора
 def update_admin_password(username, new_password):
     with get_db() as conn:
         conn.execute(
@@ -130,7 +130,7 @@ def update_admin_password(username, new_password):
             (new_password, username),
         )
 
-
+# Группирует плоский список контактов в структуру по отделам
 def group_contacts_by_department(contacts):
     groups = {}
     order = []

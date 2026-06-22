@@ -1,16 +1,21 @@
 import sqlite3
+import hashlib
 from contextlib import contextmanager
 
 DB_PATH = "phonebook.db"
 
+# Хеширует пароль с помощью алгоритма SHA-256
+def hash_password(password: str) -> str:
+    return hashlib.sha256(password.encode('utf-8')).hexdigest()
 
+# Создает и возвращает соединение с базой данных
 def get_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     return conn
 
-
+# Менеджер контекста для безопасного открытия и закрытия соединения
 @contextmanager
 def get_db():
     conn = get_connection()
@@ -23,7 +28,7 @@ def get_db():
     finally:
         conn.close()
 
-
+# Инициализирует базу данных: создает таблицы и добавляет начальные данные
 def init_db():
     conn = get_connection()
     cur = conn.cursor()
@@ -57,16 +62,17 @@ def init_db():
         )
     """)
 
+    # Добавление админа, если таблица пуста
     cur.execute("SELECT COUNT(*) FROM admins")
     if cur.fetchone()[0] == 0:
         cur.execute(
             "INSERT INTO admins (username, password) VALUES (?, ?)",
-            ("admin", "admin123"),
+            ("admin", hash_password("admin123")),
         )
 
+    # Добавление отделов и контактов, если таблица отделов пуста
     cur.execute("SELECT COUNT(*) FROM departments")
     if cur.fetchone()[0] == 0:
-        #Фиктивные данные
         departments = [
             ("Руководство", 1),
             ("Отдел информационных технологий", 2),
