@@ -72,6 +72,47 @@ python3 main.py
 
 ---
 
+## API
+
+Приложение предоставляет REST API для программного доступа к данным. Все эндпоинты используют **Basic Auth** — логин и пароль администратора.
+
+### Эндпоинты
+
+| Метод | URL | Описание |
+|---|---|---|
+| `GET` | `/api/departments` | Получить список отделов |
+| `POST` | `/api/departments` | Добавить отдел |
+| `GET` | `/api/contacts` | Получить список контактов |
+| `POST` | `/api/contacts` | Добавить контакт |
+
+### Примеры запросов
+
+**Получить список отделов:**
+```bash
+curl -u admin:admin123 http://127.0.0.1:8000/api/departments
+```
+
+**Получить список контактов:**
+```bash
+curl -u admin:admin123 http://127.0.0.1:8000/api/contacts
+```
+
+**Добавить отдел:**
+```bash
+curl -u admin:admin123 -X POST http://127.0.0.1:8000/api/departments \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Бухгалтерия", "sort_order": 1}'
+```
+
+**Добавить контакт:**
+```bash
+curl -u admin:admin123 -X POST http://127.0.0.1:8000/api/contacts \
+  -H "Content-Type: application/json" \
+  -d '{"department_id": 1, "position": "Менеджер", "full_name": "Иванов Иван Иванович", "internal_phone": "101"}'
+```
+
+---
+
 ## Структура базы данных
 
 ### Таблица `admins`

@@ -8,10 +8,12 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
 import crud
 from database import init_db
+from api import router as api_router
 
 init_db()
 
 app = FastAPI(docs_url=None, openapi_url=None)
+app.include_router(api_router)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
